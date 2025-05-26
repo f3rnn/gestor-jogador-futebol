@@ -29,6 +29,7 @@ form {
 }
   
 input,
+select,
 button {
     width: 100%;
     padding: 12px;
@@ -36,9 +37,24 @@ button {
     box-sizing: border-box;
     font-size: 14px;
 }
+
+select::-ms-expand {
+    display: none;
+}
   
 input {
     border: 1px solid #ccc;
+}
+
+select {
+    border: 1px solid #ccc;
+    background-color: white;
+    font-size: 14px;
+    padding-right: 30px;
+    appearance: auto;
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+    position: relative;
 }
   
 button {
@@ -65,4 +81,12 @@ button:hover {
   
 .link-usuarios:hover {
     text-decoration: none;
+}
+
+input:focus,
+select:focus,
+button:focus {
+    outline: none;
+    border: 1px solid #000000;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }

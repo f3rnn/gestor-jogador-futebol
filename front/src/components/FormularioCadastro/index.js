@@ -8,6 +8,19 @@ import MensagemFeedback from '../MensagemFeedback'
 import axios from 'axios'
 
 function FormularioCadastro() {
+    const formatarValorComoDecimal = (valor) => {
+        const somenteNumeros = valor.replace(/\D/g, '');
+        if (somenteNumeros.length < 3 ){
+            return somenteNumeros;
+        }
+        if (somenteNumeros.length === 3) {
+            return `${somenteNumeros.slice(0, 1)},${somenteNumeros.slice(1)}`;
+        }
+        const parteInteira = somenteNumeros.slice(0, -2);
+        const parteDecimal = somenteNumeros.slice(-2);
+        return `${parteInteira},${parteDecimal}`;
+    }
+
     const [nome, setNome] = useState('')
     const [sexo, setSexo] = useState('')
     const [idade, setIdade] = useState('')
@@ -53,14 +66,16 @@ function FormularioCadastro() {
                     onChange={(e) => setNome(e.target.value)}
                     required
                 />
-                <input 
-                    type="text"
+                <select
                     id="sexo"
-                    placeholder="Sexo"
                     value={sexo}
                     onChange={(e) => setSexo(e.target.value)}
-                    required
-                />
+                    required>
+                    <option value="">Selecione o sexo</option>
+                    <option value="MASCULINO">Masculino</option>
+                    <option value="FEMININO">Feminino</option>
+                    </select>
+
                 <input 
                     type="number"
                     id="idade"
@@ -70,19 +85,25 @@ function FormularioCadastro() {
                     required
                 />
                 <input 
-                    type="number"
+                    type="altura"
                     id="altura"
-                    placeholder="Altura (cm)"
+                    placeholder="Altura"
                     value={altura}
-                    onChange={(e) => setAltura(e.target.value)}
+                    onChange={(e) =>{
+                        const valorFormatado = formatarValorComoDecimal(e.target.value);
+                        setAltura(valorFormatado);
+                    }}
                     required
                 />
                 <input 
-                    type="number"
+                    type="peso"
                     id="peso"
                     placeholder="Peso (kg)"
                     value={peso}
-                    onChange={(e) => setPeso(e.target.value)}
+                    onChange={(e) =>{
+                        const valorFormatado = formatarValorComoDecimal(e.target.value);
+                        setPeso(valorFormatado);
+                    }}
                     required
                 />
                 <input 
