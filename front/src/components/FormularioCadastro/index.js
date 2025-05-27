@@ -14,11 +14,11 @@ function FormularioCadastro() {
             return somenteNumeros;
         }
         if (somenteNumeros.length === 3) {
-            return `${somenteNumeros.slice(0, 1)},${somenteNumeros.slice(1)}`;
+            return `${somenteNumeros.slice(0, 1)}.${somenteNumeros.slice(1)}`;
         }
         const parteInteira = somenteNumeros.slice(0, -2);
         const parteDecimal = somenteNumeros.slice(-2);
-        return `${parteInteira},${parteDecimal}`;
+        return `${parteInteira}.${parteDecimal}`;
     }
 
     const [nome, setNome] = useState('')
